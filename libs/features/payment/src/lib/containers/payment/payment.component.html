@@ -16,7 +16,6 @@
       <test-payment-form
         [cardsList]="cardsList$ | async"
         [submission]="submission$ | async"
-        [error]="error"
         (submitted)="submitPayment($event)"
       ></test-payment-form>
     </div>
