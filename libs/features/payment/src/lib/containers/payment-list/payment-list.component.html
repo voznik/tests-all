@@ -1,0 +1,7 @@
+<ul>
+  <li *ngFor="let item of payments$ | async">
+    <a [routerLink]="['..', item.id]"
+      ><clr-icon shape="credit-card"></clr-icon> {{ item.product }}</a
+    >
+  </li>
+</ul>

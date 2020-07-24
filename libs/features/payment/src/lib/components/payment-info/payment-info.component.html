@@ -1,0 +1,8 @@
+<dl>
+  <dt>Product:</dt>
+  <dd>{{ payment.product }}</dd>
+  <dt>Date:</dt>
+  <dd>{{ payment.date | date: 'short' }}</dd>
+  <dt>Amount:</dt>
+  <dd>{{ payment.amount | currency: 'USD' }}</dd>
+</dl>

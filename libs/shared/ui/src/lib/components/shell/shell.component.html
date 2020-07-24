@@ -1,0 +1,54 @@
+<clr-main-container>
+  <!--  -->
+  <clr-alerts
+    (clrCurrentAlertChange)="onAlertChange($event)"
+    *ngIf="alerts$ | async as alerts"
+  >
+    <clr-alert
+      [id]="alert.id"
+      *ngFor="let alert of alerts"
+      [clrAlertType]="alert.type"
+      [clrAlertAppLevel]="true"
+      [clrAlertIcon]="alert.icon"
+      (clrAlertClosedChange)="onAlertClosedChange(alert.id, $event)"
+    >
+      <clr-alert-item>
+        <span class="alert-text">
+          {{ alert.text }}
+        </span>
+        <div class="alert-actions" *ngIf="alert.actionText">
+          <button class="btn alert-action">
+            {{ alert.actionText }}
+          </button>
+        </div>
+      </clr-alert-item>
+    </clr-alert>
+  </clr-alerts>
+  <!--  -->
+  <clr-header class="header-6">
+    <div class="branding">
+      <a routerLink="/" class="logo-and-title">
+        <clr-icon shape="vm-bug"></clr-icon>
+        <span class="title">2P2C TEST</span>
+      </a>
+    </div>
+    <div class="divider"></div>
+    <div class="header-nav" [clr-nav-level]="1">
+      <a id="payment-link" class="nav-link nav-icon-text" routerLink="/payment"
+        ><clr-icon shape="credit-card"></clr-icon
+        ><span class="nav-text">Payments</span></a
+      >
+    </div>
+    <div class="header-actions">
+      <a href="javascript://" class="nav-link nav-icon-text">
+        <clr-icon shape="user"></clr-icon>
+        <span class="nav-text">username</span>
+      </a>
+    </div>
+  </clr-header>
+  <div class="content-container">
+    <main class="content-area">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</clr-main-container>
