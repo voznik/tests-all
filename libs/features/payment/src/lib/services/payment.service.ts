@@ -12,7 +12,7 @@ import {
 
 @Injectable()
 export class PaymentService {
-  baseUrl = 'http://www.mocky.io/v2';
+  baseUrl = 'https://www.mocky.io/v2';
 
   submitUrlSuccess = '5d8de422310000b19d2b517a';
   submitUrlError = '5d8de441310000a2612b517c';
