@@ -1,5 +1,5 @@
 {
-  "npmScope": "2p2c",
+  "npmScope": "test-wokspace",
   "affected": {
     "defaultBase": "master"
   },

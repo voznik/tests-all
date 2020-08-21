@@ -1,4 +1,4 @@
-import { HttpService, Logger } from '@2p2c/shared/core';
+import { HttpService, Logger } from '@wokspace/shared/core';
 import { Injectable } from '@angular/core';
 import { EMPTY, Observable, of } from 'rxjs';
 import { catchError, delay, map } from 'rxjs/operators';

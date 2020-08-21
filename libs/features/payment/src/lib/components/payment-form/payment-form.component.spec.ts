@@ -1,4 +1,4 @@
-import { TestingModule } from '@2p2c/shared/testing';
+import { TestingModule } from '@wokspace/shared/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ClrForm } from '@clr/angular';

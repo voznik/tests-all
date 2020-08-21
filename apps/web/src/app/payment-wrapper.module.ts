@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { PaymentModule } from '@2p2c/features/payment';
+import { PaymentModule } from '@wokspace/features/payment';
 
 @NgModule({
   imports: [PaymentModule],

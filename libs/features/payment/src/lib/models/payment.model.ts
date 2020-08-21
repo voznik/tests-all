@@ -1,4 +1,4 @@
-import { ApiResponse } from '@2p2c/shared/core';
+import { ApiResponse } from '@wokspace/shared/core';
 
 export interface PaymentCardType {
   id: string;

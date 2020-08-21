@@ -5,7 +5,7 @@ import {
   TestingModule,
   createComponent,
   activateRouteMockFactory,
-} from '@2p2c/shared/testing';
+} from '@wokspace/shared/testing';
 import { of } from 'rxjs';
 import { PaymentService, PaymentDetailService } from '../../services';
 import { PaymentComponent } from './payment.component';

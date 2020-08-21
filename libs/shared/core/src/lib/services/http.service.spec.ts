@@ -2,7 +2,7 @@
 import { HttpClient, HttpEventType, HttpEvent } from '@angular/common/http';
 import { HttpTestingController } from '@angular/common/http/testing';
 import { fakeAsync, flushMicrotasks, TestBed } from '@angular/core/testing';
-import { TestingModule } from '@2p2c/shared/shared';
+import { TestingModule } from '@wokspace/shared/shared';
 import { skipWhile, filter } from 'rxjs/operators';
 import { HttpService } from './http.service';
 

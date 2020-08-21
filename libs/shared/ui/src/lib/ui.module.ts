@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { ClarityModule } from '@clr/angular';
-import { SharedModule } from '@2p2c/shared/shared';
+import { SharedModule } from '@wokspace/shared/shared';
 import {
   UiAlertComponent,
   UiDialogComponent,

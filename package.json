@@ -1,5 +1,5 @@
 {
-  "name": "2p2c",
+  "name": "test-wokspace",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -26,7 +26,7 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "deploy-gh": "ng deploy --base-href=/2p2c-test --repo=https://github.com/voznik/2p2c-test --name=voznik"
+    "deploy-gh": "ng deploy --base-href=/test-wokspace --repo=https://github.com/voznik/test-wokspace --name=voznik"
   },
   "private": true,
   "dependencies": {

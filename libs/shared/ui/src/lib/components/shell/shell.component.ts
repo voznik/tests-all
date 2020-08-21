@@ -1,4 +1,4 @@
-import { environment, Logger } from '@2p2c/shared/core';
+import { environment, Logger } from '@wokspace/shared/core';
 import { Component, OnInit } from '@angular/core';
 import { UiDialogService } from '../../services/dialog.service';
 

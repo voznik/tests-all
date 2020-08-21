@@ -3,10 +3,10 @@ import {
   LoggerLevel,
   // APP_NAME,
   LOGGER_LEVEL,
-} from '@2p2c/shared/core';
-// import { UiDialogService } from '@2p2c/shared/ui/services';
-import { SharedModule } from '@2p2c/shared/shared';
-import { UiModule, UiDialogService } from '@2p2c/shared/ui';
+} from '@wokspace/shared/core';
+// import { UiDialogService } from '@wokspace/shared/ui/services';
+import { SharedModule } from '@wokspace/shared/shared';
+import { UiModule, UiDialogService } from '@wokspace/shared/ui';
 import { Location } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SpyLocation } from '@angular/common/testing';

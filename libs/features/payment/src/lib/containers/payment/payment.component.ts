@@ -1,5 +1,5 @@
-import { environment, Logger } from '@2p2c/shared/core';
-import { UiDialogService } from '@2p2c/shared/ui';
+import { environment, Logger } from '@wokspace/shared/core';
+import { UiDialogService } from '@wokspace/shared/ui';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, BehaviorSubject } from 'rxjs';
