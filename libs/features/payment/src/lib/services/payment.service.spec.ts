@@ -43,7 +43,7 @@ describe('PaymentService', () => {
   });
 
   it('should get cards list', () => {
-    service.getCardsList().subscribe((cards) => {
+    service.getCardsList(null).subscribe((cards) => {
       expect(cards.length).toBe(1);
       expect(cards).toEqual(dummyCards);
     });
