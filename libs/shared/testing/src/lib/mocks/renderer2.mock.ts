@@ -1,5 +1,5 @@
 import { Renderer2 } from '@angular/core';
-import { noop } from '@wokspace/shared/shared';
+import { noop } from '@workspace/shared/shared';
 
 /**
  * A mock of the Angular Renderer2

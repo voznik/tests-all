@@ -1,4 +1,4 @@
-import { createComponent, TestingModule } from '@wokspace/shared/testing';
+import { createComponent, TestingModule } from '@workspace/shared/testing';
 import { ComponentFixture } from '@angular/core/testing';
 import { PaymentInfoComponent } from './payment-info.component';
 

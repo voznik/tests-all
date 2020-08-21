@@ -1,11 +1,11 @@
-import { Logger } from '@wokspace/shared/core';
+import { Logger } from '@workspace/shared/core';
 import {
   creditCardExpiryValidator,
   creditCardValidator,
   emailValidator,
   isUndefined,
   lettersValidator,
-} from '@wokspace/shared/shared';
+} from '@workspace/shared/shared';
 import {
   ChangeDetectionStrategy,
   Component,

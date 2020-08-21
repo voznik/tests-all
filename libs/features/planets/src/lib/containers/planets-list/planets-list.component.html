@@ -1,0 +1,19 @@
+<div class="planet-list-wrapper">
+  <div class="planet-list">
+    <div class="card" *ngFor="let item of planets$ | async">
+      <div class="card-block">
+        <div class="card-media-block">
+          <img [src]="item.image" class="card-media-image" title="{{item.name}} image" alt="{{item.name}} image"/>
+          <div class="card-media-description">
+             <a [routerLink]="['..', item.name]" class="card-media-title" title="Go to {{ item.name}} details">
+              {{ item.name }}
+            </a>
+            <span class="card-media-text">
+              {{ item.region }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

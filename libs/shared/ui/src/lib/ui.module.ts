@@ -1,13 +1,17 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ClarityModule } from '@clr/angular';
-import { SharedModule } from '@wokspace/shared/shared';
+import { SharedModule } from '@workspace/shared/shared';
 import {
   UiAlertComponent,
   UiDialogComponent,
   UiShellComponent,
 } from './components';
-import { ALERT_CONFIG_TOKEN, defaultAlertConfig } from './models';
+import {
+  ALERT_CONFIG_TOKEN,
+  defaultAlertConfig,
+  TOP_LEVEL_MENU,
+} from './models';
 
 const UI_COMPONENTS = [UiAlertComponent, UiDialogComponent, UiShellComponent];
 
@@ -22,6 +26,7 @@ export class UiModule {
       ngModule: UiModule,
       providers: [
         { provide: ALERT_CONFIG_TOKEN, useValue: defaultAlertConfig },
+        // { provide: TOP_LEVEL_MENU, useValue: {}, multi: true },
       ],
     };
   }

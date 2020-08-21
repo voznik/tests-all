@@ -16,11 +16,14 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@wokspace/shared/ui": ["libs/shared/ui/src/index.ts"],
-      "@wokspace/shared/core": ["libs/shared/core/src/index.ts"],
-      "@wokspace/shared/shared": ["libs/shared/shared/src/index.ts"],
-      "@wokspace/shared/testing": ["libs/shared/testing/src/index.ts"],
-      "@wokspace/features/payment": ["libs/features/payment/src/index.ts"]
+      "@workspace/shared/auth": ["libs/shared/auth/src/index.ts"],
+      "@workspace/shared/auth/*": ["libs/shared/auth/src/lib/*"],
+      "@workspace/shared/ui": ["libs/shared/ui/src/index.ts"],
+      "@workspace/shared/core": ["libs/shared/core/src/index.ts"],
+      "@workspace/shared/shared": ["libs/shared/shared/src/index.ts"],
+      "@workspace/shared/testing": ["libs/shared/testing/src/index.ts"],
+      "@workspace/features/payment": ["libs/features/payment/src/index.ts"],
+      "@workspace/features/planets": ["libs/features/planets/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

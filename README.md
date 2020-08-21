@@ -1,4 +1,4 @@
-# test-wokspace
+# test-workspace
 
 This project was generated using [Nx](https://nx.dev).
 

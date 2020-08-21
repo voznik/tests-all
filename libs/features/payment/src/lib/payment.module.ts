@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
-import { Logger } from '@wokspace/shared/core';
-import { SharedModule } from '@wokspace/shared/shared';
-import { UiModule } from '@wokspace/shared/ui';
-import { PaymentComponent } from './containers';
-import { PaymentFormComponent } from './components';
-import { PaymentService, PaymentDetailService } from './services';
+import { BASE_URL, Logger } from '@workspace/shared/core';
+import { SharedModule } from '@workspace/shared/shared';
+import { UiModule } from '@workspace/shared/ui';
+import { PaymentFormComponent, PaymentInfoComponent } from './components';
+import { PaymentComponent, PaymentListComponent } from './containers';
 import { PaymentRoutingModule } from './payment-routing.module';
-import { PaymentListComponent } from './containers/payment-list/payment-list.component';
-import { PaymentInfoComponent } from './components/payment-info/payment-info.component';
+import { PaymentDetailService, PaymentService } from './services';
 
 @NgModule({
   imports: [SharedModule, UiModule, PaymentRoutingModule],
@@ -17,7 +15,11 @@ import { PaymentInfoComponent } from './components/payment-info/payment-info.com
     PaymentListComponent,
     PaymentInfoComponent,
   ],
-  providers: [PaymentService, PaymentDetailService],
+  providers: [
+    { provide: BASE_URL, useValue: 'https://www.mocky.io/v2' },
+    PaymentService,
+    PaymentDetailService,
+  ],
 })
 export class PaymentModule {
   constructor(private logger: Logger) {

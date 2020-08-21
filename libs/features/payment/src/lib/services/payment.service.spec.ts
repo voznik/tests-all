@@ -1,5 +1,5 @@
-import { HttpService } from '@wokspace/shared/core';
-import { TestingModule } from '@wokspace/shared/testing';
+import { HttpService } from '@workspace/shared/core';
+import { TestingModule } from '@workspace/shared/testing';
 import { HttpClient } from '@angular/common/http';
 import { HttpTestingController } from '@angular/common/http/testing';
 import { fakeAsync, flushMicrotasks, TestBed } from '@angular/core/testing';

@@ -1,5 +1,5 @@
 {
-  "npmScope": "test-wokspace",
+  "npmScope": "test-workspace",
   "affected": {
     "defaultBase": "master"
   },
@@ -42,6 +42,12 @@
       "tags": ["shared"]
     },
     "features-payment": {
+      "tags": []
+    },
+    "features-planets": {
+      "tags": []
+    },
+    "shared-auth": {
       "tags": []
     }
   }

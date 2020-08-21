@@ -1,0 +1,39 @@
+<div class="clr-row">
+  <div class="clr-col-lg-5 clr-col-md-8 clr-col-12">
+    <div class="card">
+      <div class="card-header">
+        Log In
+      </div>
+      <div class="card-block">
+        <form class="login-form" clrForm clrLayout="vertical" [formGroup]="loginForm">
+          <div class="login-form-body">
+            <clr-input-container class="full-width-container">
+              <label>Email</label>
+              <input
+                clrInput
+                type="text"
+                formControlName="email"
+                placeholder="Enter Email"
+              />
+              <clr-control-helper *ngIf="loginForm.controls['email'].pristine">Please, enter your email address</clr-control-helper>
+              <clr-control-error *clrIfError="'email'"
+                >Please, enter a valid email address</clr-control-error
+              >
+            </clr-input-container>
+          </div>
+
+          <div class="login-form-footer">
+            <button
+              class="btn btn-primary"
+              type="submit"
+              [disabled]="loginForm.invalid"
+              (click)="submit()"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

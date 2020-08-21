@@ -1,4 +1,4 @@
-import { HttpService, Logger } from '@wokspace/shared/core';
+import { HttpService, Logger } from '@workspace/shared/core';
 import { Injectable } from '@angular/core';
 import { EMPTY, Observable, of } from 'rxjs';
 import { catchError, delay, map } from 'rxjs/operators';
@@ -12,8 +12,6 @@ import {
 
 @Injectable()
 export class PaymentService {
-  baseUrl = 'https://www.mocky.io/v2';
-
   submitUrlSuccess = '5d8de422310000b19d2b517a';
   submitUrlError = '5d8de441310000a2612b517c';
 
@@ -32,7 +30,7 @@ export class PaymentService {
   }: {
     excludeId: string;
   }): Observable<PaymentCardType[]> {
-    const url = `${this.baseUrl}/5d145fa22f0000ff3ec4f030`;
+    const url = `${this.http.apiUrl}/5d145fa22f0000ff3ec4f030`;
     return this.http.get(url).pipe(
       map((res: any) => this.newMethod(res, excludeId)),
       catchError((e) => {
@@ -52,7 +50,7 @@ export class PaymentService {
   }
 
   submitPayment(payload: PaymentPayload): Observable<PaymentResponse> {
-    const url = `${this.baseUrl}/${
+    const url = `${this.http.apiUrl}/${
       payload.payment.id === PAYMENTS[1].id
         ? this.submitUrlError
         : this.submitUrlSuccess

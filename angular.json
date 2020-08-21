@@ -94,10 +94,7 @@
               "apps/web/tsconfig.app.json",
               "apps/web/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/web/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/web/**/*"]
           }
         },
         "test": {
@@ -136,13 +133,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/web-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/web-e2e/**/*"
-            ]
+            "tsConfig": ["apps/web-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/web-e2e/**/*"]
           }
         }
       }
@@ -160,10 +152,7 @@
               "libs/shared/ui/tsconfig.lib.json",
               "libs/shared/ui/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/shared/ui/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/shared/ui/**/*"]
           }
         },
         "test": {
@@ -195,10 +184,7 @@
               "libs/shared/core/tsconfig.lib.json",
               "libs/shared/core/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/shared/core/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/shared/core/**/*"]
           }
         },
         "test": {
@@ -230,10 +216,7 @@
               "libs/shared/shared/tsconfig.lib.json",
               "libs/shared/shared/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/shared/shared/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/shared/shared/**/*"]
           }
         },
         "test": {
@@ -260,10 +243,7 @@
               "libs/shared/testing/tsconfig.lib.json",
               "libs/shared/testing/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/shared/testing/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/shared/testing/**/*"]
           }
         },
         "test": {
@@ -291,10 +271,7 @@
               "libs/features/payment/tsconfig.lib.json",
               "libs/features/payment/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/features/payment/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/features/payment/**/*"]
           }
         },
         "test": {
@@ -304,6 +281,70 @@
             "tsConfig": "libs/features/payment/tsconfig.spec.json",
             "passWithNoTests": true,
             "setupFile": "libs/features/payment/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "features-planets": {
+      "projectType": "library",
+      "root": "libs/features/planets",
+      "sourceRoot": "libs/features/planets/src",
+      "prefix": "p",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/features/planets/tsconfig.lib.json",
+              "libs/features/planets/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/features/planets/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/features/planets/jest.config.js",
+            "tsConfig": "libs/features/planets/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/features/planets/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "shared-auth": {
+      "projectType": "library",
+      "root": "libs/shared/auth",
+      "sourceRoot": "libs/shared/auth/src",
+      "prefix": "a",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/auth/tsconfig.lib.json",
+              "libs/shared/auth/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/auth/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/auth/jest.config.js",
+            "tsConfig": "libs/shared/auth/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/shared/auth/src/test-setup.ts"
           }
         }
       },
@@ -324,7 +365,12 @@
       "e2eTestRunner": "cypress"
     },
     "@nrwl/angular:library": {
-      "unitTestRunner": "jest"
+      "unitTestRunner": "jest",
+      "style": "scss",
+      "directory": "features",
+      "simpleModuleName": true,
+      "lazy": true,
+      "prefix": ""
     }
   },
   "defaultProject": "web"

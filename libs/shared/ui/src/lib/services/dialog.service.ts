@@ -1,4 +1,4 @@
-import { generateUUID } from '@wokspace/shared/shared';
+import { generateUUID } from '@workspace/shared/shared';
 import { Injectable, Injector, Inject } from '@angular/core';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal, PortalInjector } from '@angular/cdk/portal';

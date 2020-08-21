@@ -1,15 +1,9 @@
 // tslint:disable:only-arrow-functions ban-types
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-// import {
-//   isEmptyObject,
-//   toString,
-//   isFileList,
-//   isFileArray,
-//   isSingleFile,
-// } from '@pentegra/shared';
 import { Observable } from 'rxjs';
 import { Logger } from './logger.service';
+import { BASE_URL } from '../models';
 
 const defaultOptions: CustomReqOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -18,13 +12,13 @@ const defaultOptions: CustomReqOptions = {
 @Injectable()
 export class HttpService {
   constructor(
-    // @Inject(BASE_URL) private _baseUrl,
+    @Inject(BASE_URL) private readonly _baseUrl,
     private http: HttpClient,
     private logger: Logger
   ) {}
 
   get apiUrl(): string {
-    return '';
+    return this._baseUrl;
   }
 
   /**

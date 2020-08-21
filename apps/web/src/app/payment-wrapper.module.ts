@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { PaymentModule } from '@wokspace/features/payment';
+import { PaymentModule } from '@workspace/features/payment';
 
 @NgModule({
   imports: [PaymentModule],

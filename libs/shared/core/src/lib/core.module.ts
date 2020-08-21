@@ -8,6 +8,7 @@ import {
   ErrorHandler,
 } from '@angular/core';
 import { environment } from './environments/environment';
+import { BASE_URL } from './models';
 import {
   // AppErrorHandler,
   HttpErrorInterceptor,
@@ -30,10 +31,10 @@ export class CoreModule {
     return {
       ngModule: CoreModule,
       providers: [
-        // { provide: BASE_URL, useValue: options.baseUrl || '' },
+        { provide: BASE_URL, useValue: options.baseUrl || '' },
         {
           provide: LOGGER_LEVEL,
-          useValue: options.loggerLevel || LoggerLevel.DEBUG,
+          useValue: options.loggerLevel || LoggerLevel.LOG,
         },
         // { provide: ErrorHandler, useClass: AppErrorHandler },
         {
@@ -44,7 +45,7 @@ export class CoreModule {
         // isDev
         //   ? {
         //       provide: HTTP_INTERCEPTORS,
-        //       useClass: HttpMockRequestInterceptor,
+        //       useClass: ,
         //       multi: true,
         //     }
         //   : [],

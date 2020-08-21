@@ -5,7 +5,7 @@ import {
   TestingModule,
   createComponent,
   activateRouteMockFactory,
-} from '@wokspace/shared/testing';
+} from '@workspace/shared/testing';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 

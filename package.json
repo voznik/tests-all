@@ -1,5 +1,5 @@
 {
-  "name": "test-wokspace",
+  "name": "test-workspace",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -26,7 +26,7 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "deploy-gh": "ng deploy --base-href=/test-wokspace --repo=https://github.com/voznik/test-wokspace --name=voznik"
+    "deploy-gh": "ng deploy --base-href=/test-workspace --repo=https://github.com/voznik/test-workspace --name=voznik"
   },
   "private": true,
   "dependencies": {
@@ -46,6 +46,7 @@
     "@nrwl/angular": "10.0.2",
     "@webcomponents/webcomponentsjs": "^2.0.0",
     "date-fns": "^2.15.0",
+    "ngx-webstorage-service": "^4.1.0",
     "rxjs": "~6.5.5",
     "zone.js": "^0.10.2"
   },

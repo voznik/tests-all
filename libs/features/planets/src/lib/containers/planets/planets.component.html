@@ -1,0 +1,19 @@
+<div class="card">
+  <div class="card-header">
+    <a
+      class="btn btn-link back-link"
+      title="Go Back to List"
+      [routerLink]="['../', 'list']"
+      ><clr-icon shape="angle" style="transform: rotate(270deg);"></clr-icon
+    ></a>
+    <span>{{planet.name}}</span>
+  </div>
+  <div class="card-block clr-row">
+    <div class="card-img clr-col-sm-12 clr-col-md-6">
+      <img [src]="planet.image" alt="Image of {{planet.name}}" />
+    </div>
+    <div class="card-text planet-info clr-col-sm-12 clr-col-md-6">
+      <test-planet-info [planet]="planet"></test-planet-info>
+    </div>
+  </div>
+</div>

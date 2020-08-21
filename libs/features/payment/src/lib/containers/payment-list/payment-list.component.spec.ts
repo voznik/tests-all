@@ -1,4 +1,4 @@
-import { createComponent, TestingModule } from '@wokspace/shared/testing';
+import { createComponent, TestingModule } from '@workspace/shared/testing';
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
