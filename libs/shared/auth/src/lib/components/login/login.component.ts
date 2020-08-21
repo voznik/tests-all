@@ -1,9 +1,10 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ClrForm, ClrLoadingState } from '@clr/angular';
 import { emailValidator } from '@workspace/shared/shared';
 import { AuthServiceIntf } from '../../models';
-import { AUTH_SERVICE } from '../../tokens/auth.tokens';
+import { AUTH_SERVICE, AUTH_REDIRECT } from '../../tokens/auth.tokens';
 
 @Component({
   templateUrl: './login.component.html',
@@ -15,7 +16,9 @@ export class LoginComponent implements OnInit {
   loginForm = new FormGroup({});
 
   constructor(
+    private router: Router,
     private formBuilder: FormBuilder,
+    @Inject(AUTH_REDIRECT) private redirect: string,
     @Inject(AUTH_SERVICE) private authService: AuthServiceIntf
   ) {}
 
@@ -29,6 +32,8 @@ export class LoginComponent implements OnInit {
     } else {
       const payload = this.loginForm.getRawValue();
       this.authService.login(payload);
+      // redirect after login
+      this.router.navigateByUrl(this.redirect);
     }
   }
 

@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { AUTH_REDIRECT } from '@workspace/shared/auth';
 import { BASE_URL, Logger } from '@workspace/shared/core';
 import { SharedModule } from '@workspace/shared/shared';
 import { UiModule } from '@workspace/shared/ui';
@@ -14,6 +15,7 @@ const API_URL = 'http://private-anon-5b2bae4500-starhub.apiary-mock.com/api';
   imports: [SharedModule, UiModule, PlanetsRoutingModule],
   declarations: [PlanetsInfoComponent, PlanetsComponent, PlanetsListComponent],
   providers: [
+    { provide: AUTH_REDIRECT, useValue: '/planets' },
     { provide: BASE_URL, useValue: API_URL },
     PlanetsService,
     PlanetsDetailService,

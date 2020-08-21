@@ -24,7 +24,9 @@ import { WelcomeComponent } from './welcome.component';
       loggerLevel: environment.production ? 1 : 5,
     }),
     UiModule.forRoot(),
-    AuthModule.forRoot(),
+    AuthModule.forRoot({
+      redirectLink: '/planets',
+    }),
     AppRoutingModule,
   ],
   bootstrap: [AppComponent],

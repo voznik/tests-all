@@ -7,3 +7,5 @@ export const AUTH_SERVICE = new InjectionToken<AuthServiceIntf>(
   'AUTH_SERVICE',
   { providedIn: 'root', factory: authServiceFactory }
 );
+
+export const AUTH_REDIRECT = new InjectionToken<string>('RedirectAfterLogin');

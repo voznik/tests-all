@@ -4,6 +4,7 @@ import { SharedModule } from '@workspace/shared/shared';
 import { UiModule } from '@workspace/shared/ui';
 import { SimpleGuard } from './services';
 import { LoginComponent } from './components/login/login.component';
+import { AUTH_REDIRECT } from './tokens';
 
 @NgModule({
   imports: [
@@ -19,7 +20,10 @@ export class AuthModule {
   static forRoot(options?): ModuleWithProviders<AuthModule> {
     return {
       ngModule: AuthModule,
-      providers: [SimpleGuard],
+      providers: [
+        SimpleGuard,
+        { provide: AUTH_REDIRECT, useValue: options.redirectLink || '/' },
+      ],
     };
   }
 }
