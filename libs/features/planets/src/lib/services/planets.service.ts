@@ -5,7 +5,7 @@ import { catchError, delay, map } from 'rxjs/operators';
 import { PLANETS } from '../mocks';
 import { Planet } from '../models';
 
-const API_URL = 'http://private-anon-5b2bae4500-starhub.apiary-mock.com/api';
+const API_URL = 'https://private-anon-5b2bae4500-starhub.apiary-mock.com/api';
 
 @Injectable()
 export class PlanetsService {
