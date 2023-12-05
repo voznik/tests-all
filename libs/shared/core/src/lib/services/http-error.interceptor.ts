@@ -1,13 +1,14 @@
 import {
-  HttpEvent,
-  HttpInterceptor,
-  HttpHandler,
-  HttpRequest,
   HttpErrorResponse,
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
 } from '@angular/common/http';
-import { Injectable, Injector, ErrorHandler } from '@angular/core';
+import { ErrorHandler, Injectable, Injector } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
+import { AppErrorHandler } from './app-error-handler.service';
 
 /** Passes HttpErrorResponse to application-wide error handler */
 @Injectable()
@@ -18,14 +19,14 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   }
 
   intercept(
-    request: HttpRequest<any>,
+    request: HttpRequest<unknown>,
     next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+  ): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError((err) => {
         if (err instanceof HttpErrorResponse) {
           // const apiErr = new ApiErrorResponse(err);
-          this.appErrorHandler.handleApiError(err);
+          (this.appErrorHandler as AppErrorHandler).handleApiError(err);
           return throwError(err);
         }
         return throwError(err);

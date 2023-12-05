@@ -7,7 +7,6 @@ import {
   SkipSelf,
   ErrorHandler,
 } from '@angular/core';
-import { environment } from './environments/environment';
 import { BASE_URL } from './models';
 import {
   // AppErrorHandler,
@@ -16,18 +15,19 @@ import {
   Logger,
   LoggerLevel,
   LOGGER_LEVEL,
+  AppErrorHandler,
 } from './services';
 
 const CORE_PROVIDERS = [HttpService, Logger];
-
-const isDev = !environment.production;
 
 @NgModule({
   imports: [CommonModule, HttpClientModule],
   exports: [HttpClientModule],
 })
 export class CoreModule {
-  static forRoot(options: any): ModuleWithProviders<CoreModule> {
+  static forRoot(
+    options: Record<string, unknown>
+  ): ModuleWithProviders<CoreModule> {
     return {
       ngModule: CoreModule,
       providers: [
@@ -36,19 +36,12 @@ export class CoreModule {
           provide: LOGGER_LEVEL,
           useValue: options.loggerLevel || LoggerLevel.LOG,
         },
-        // { provide: ErrorHandler, useClass: AppErrorHandler },
+        { provide: ErrorHandler, useClass: AppErrorHandler },
         {
           provide: HTTP_INTERCEPTORS,
           useClass: HttpErrorInterceptor,
           multi: true,
         },
-        // isDev
-        //   ? {
-        //       provide: HTTP_INTERCEPTORS,
-        //       useClass: ,
-        //       multi: true,
-        //     }
-        //   : [],
         ...CORE_PROVIDERS,
       ],
     };

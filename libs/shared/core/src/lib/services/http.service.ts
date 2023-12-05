@@ -12,7 +12,7 @@ const defaultOptions: CustomReqOptions = {
 @Injectable()
 export class HttpService {
   constructor(
-    @Inject(BASE_URL) private readonly _baseUrl,
+    @Inject(BASE_URL) private readonly _baseUrl: string,
     private http: HttpClient,
     private logger: Logger
   ) {}
@@ -24,6 +24,7 @@ export class HttpService {
   /**
    * @description creates HttpParams from key-value pairs
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   buildUrlParams(paramsObj: { [key: string]: any }): HttpParams {
     for (const key in paramsObj) {
       if (paramsObj.hasOwnProperty(key)) {
@@ -37,11 +38,19 @@ export class HttpService {
     return this.http.get<T>(url, options);
   }
 
-  post<T>(url: string, body: any, options = defaultOptions): Observable<T> {
+  post<T>(
+    url: string,
+    body: AnyObject,
+    options = defaultOptions
+  ): Observable<T> {
     return this.http.post<T>(url, body, options);
   }
 
-  put<T>(url: string, body: any, options = defaultOptions): Observable<T> {
+  put<T>(
+    url: string,
+    body: AnyObject,
+    options = defaultOptions
+  ): Observable<T> {
     return this.http.put<T>(url, body, options);
   }
 
@@ -49,7 +58,7 @@ export class HttpService {
     return this.http.delete<T>(url, options);
   }
 
-  patch<T>(url: string, body: any): Observable<T> {
+  patch<T>(url: string, body: AnyObject): Observable<T> {
     return this.http.patch<T>(url, body);
   }
 }
@@ -60,7 +69,8 @@ export interface CustomReqOptions {
     | {
         [header: string]: string | string[];
       };
-  responseType?;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  responseType?: any;
   params?:
     | HttpParams
     | {

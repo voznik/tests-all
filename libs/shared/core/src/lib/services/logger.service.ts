@@ -1,6 +1,5 @@
-// tslint:disable:no-unused-expression no-console only-arrow-functions max-line-length prefer-conditional-expression
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Inject, Injectable, InjectionToken } from '@angular/core';
-import { environment } from '../environments/environment';
 
 const noop = (): void => undefined;
 /**
@@ -94,7 +93,6 @@ export class Logger {
    * The log level.
    */
   private _level: LoggerLevel;
-  private _clientLogLevel: LoggerLevel;
 
   /**
    * Returns the log level.
@@ -175,34 +173,5 @@ export class Logger {
     } else {
       this.timeEnd = noop;
     }
-  }
-
-  // custom method that skips _log, to log group only debug level
-  logGroup(
-    method: keyof Console = 'log',
-    args: any,
-    groupName = 'ℹ️ Debug:'
-  ): void {
-    // if no message or the log level is less than the environ
-    if (LoggerLevel.DEBUG < this._clientLogLevel) {
-      return;
-    }
-    console.groupCollapsed(groupName);
-    for (const argName in args) {
-      if (args[argName] !== undefined) {
-        this[method](
-          `%c${argName} =`,
-          'color: #D91468; font-weight: bold',
-          args[argName]
-        );
-      } else {
-        this[method](
-          `%c${argName} =`,
-          'color: #80746D; font-weight: bold',
-          args[argName]
-        );
-      }
-    }
-    console.groupEnd();
   }
 }

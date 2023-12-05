@@ -1,0 +1,27 @@
+{
+  "name": "ghv-repositories",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/features/ghv-repositories/src",
+  "prefix": "org",
+  "tags": [],
+  "projectType": "library",
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/features/ghv-repositories/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/features/ghv-repositories/**/*.ts",
+          "libs/features/ghv-repositories/**/*.html"
+        ]
+      }
+    }
+  }
+}

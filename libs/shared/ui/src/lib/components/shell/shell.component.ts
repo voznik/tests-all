@@ -1,9 +1,8 @@
-import { Component, Inject, OnInit, SkipSelf } from '@angular/core';
-import { AuthServiceIntf } from '@workspace/shared/auth/models';
-import { AUTH_SERVICE } from '@workspace/shared/auth/tokens';
-import { Logger } from '@workspace/shared/core';
+import { Component, EventEmitter, Inject, OnInit } from '@angular/core';
+import { Logger } from '@ghv/core';
+import { of } from 'rxjs';
 import { NavItem, TOP_LEVEL_MENU } from '../../models';
-import { UiDialogService } from '../../services/dialog.service';
+import { UiDialogService } from '../../services';
 
 @Component({
   selector: 'ui-shell',
@@ -12,11 +11,11 @@ import { UiDialogService } from '../../services/dialog.service';
 })
 export class UiShellComponent implements OnInit {
   alerts$ = this.dialogService.alerts$;
-  currentUser$ = this.authService.currentUser;
+  currentUser$ = of({});
+  authEvent = new EventEmitter<{ type: string }>();
 
   constructor(
     @Inject(TOP_LEVEL_MENU) public topLevelMenu: NavItem[],
-    @Inject(AUTH_SERVICE) private authService: AuthServiceIntf,
     private logger: Logger,
     private dialogService: UiDialogService
   ) {}
@@ -26,14 +25,16 @@ export class UiShellComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout();
+    this.authEvent.emit({ type: 'logout' });
   }
 
-  onAlertChange(event) {
+  onAlertChange(event: unknown) {
     this.logger.log(event);
   }
 
-  onAlertClosedChange(idx, event) {
-    this.dialogService.removeAlert(idx);
+  onAlertClosedChange(idx: string, event: boolean) {
+    if (event) {
+      this.dialogService.removeAlert(idx);
+    }
   }
 }

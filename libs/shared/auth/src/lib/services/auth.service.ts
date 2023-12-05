@@ -1,48 +1,61 @@
+import { InjectionToken, inject } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { pluck } from 'rxjs/operators';
-import { AuthServiceIntf, AuthState } from '../models';
+import { map } from 'rxjs/operators';
+import { AuthState, User } from '../models';
+import { STORAGE } from './storage.service';
+import { Router } from '@angular/router';
 
-export class AuthService implements AuthServiceIntf {
+export interface AuthService {
+  authState$: Observable<AuthState>;
+  currentUser: Observable<User | null>;
+  login(payload: User, redirect: string): Promise<void>;
+  logout(): Promise<void>;
+}
+
+export const AUTH_SERVICE = new InjectionToken<AuthService>('AUTH_SERVICE', {
+  providedIn: 'root',
+  factory: () => new AuthServiceImpl(inject(STORAGE), inject(Router)),
+});
+
+export const AUTH_REDIRECT = new InjectionToken<string>('RedirectAfterLogin');
+
+class AuthServiceImpl implements AuthService {
   private authState: BehaviorSubject<AuthState>;
   public authState$: Observable<AuthState>;
 
-  constructor() {
-    const user = JSON.parse(window.sessionStorage.getItem('user')) || null;
+  get currentUser(): Observable<User | null> {
+    return this.authState$.pipe(map((state) => state.user || null));
+  }
+
+  constructor(private tokenStorage: Storage, private router: Router) {
+    const stored = this.tokenStorage.getItem('token');
     this.authState = new BehaviorSubject<AuthState>({
       error: null,
       pending: false,
-      user,
+      user: stored ? (JSON.parse(stored) as User) : null,
     });
     this.authState$ = this.authState.asObservable();
   }
 
-  login(payload: { email: string }): void {
-    const user = {
-      email: payload.email,
-      name: payload.email.split('@')[0],
-    };
-    window.sessionStorage.setItem('user', JSON.stringify(user));
+  async login(payload: User, redirect: string): Promise<void> {
+    this.tokenStorage.setItem('token', JSON.stringify(payload.token));
     this.authState.next({
       error: null,
       pending: false,
-      user,
+      user: payload,
     });
+
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    // redirect after login
+    this.router.navigateByUrl(redirect);
   }
 
-  logout() {
-    window.sessionStorage.removeItem('user');
+  async logout() {
+    this.tokenStorage.removeItem('token');
     this.authState.next({
       error: null,
       pending: false,
       user: null,
     });
   }
-
-  get currentUser() {
-    return this.authState$.pipe(pluck('user'));
-  }
-}
-
-export function authServiceFactory(): AuthServiceIntf {
-  return new AuthService();
 }

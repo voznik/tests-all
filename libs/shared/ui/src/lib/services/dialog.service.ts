@@ -1,7 +1,8 @@
-import { generateUUID } from '@workspace/shared/shared';
-import { Injectable, Injector, Inject } from '@angular/core';
-import { Overlay, OverlayRef } from '@angular/cdk/overlay';
+import { Overlay } from '@angular/cdk/overlay';
 import { ComponentPortal, PortalInjector } from '@angular/cdk/portal';
+import { Inject, Injectable, Injector } from '@angular/core';
+import { generateUUID } from '@ghv/utils';
+import { BehaviorSubject } from 'rxjs';
 import { UiAlertComponent } from '../components/alert/alert.component';
 import {
   ALERT_CONFIG_TOKEN,
@@ -9,13 +10,13 @@ import {
   AlertData,
   AlertRef,
 } from '../models';
-import { of, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UiDialogService {
   private alerts = new BehaviorSubject<AlertData[]>([
+    // INFO: demo
     /* {
       id: generateUUID(),
       type: 'info',
@@ -25,7 +26,7 @@ export class UiDialogService {
   ]);
   alerts$ = this.alerts.asObservable();
 
-  private lastAlert: AlertRef;
+  private lastAlert!: AlertRef;
 
   constructor(
     private overlay: Overlay,

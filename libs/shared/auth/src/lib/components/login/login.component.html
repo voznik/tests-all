@@ -1,23 +1,28 @@
 <div class="clr-row">
   <div class="clr-col-lg-5 clr-col-md-8 clr-col-12">
     <div class="card">
-      <div class="card-header">
-        Log In
-      </div>
+      <div class="card-header">Log In</div>
       <div class="card-block">
-        <form class="login-form" clrForm clrLayout="vertical" [formGroup]="loginForm">
+        <form
+          class="login-form"
+          clrForm
+          clrLayout="vertical"
+          [formGroup]="loginForm"
+        >
           <div class="login-form-body">
             <clr-input-container class="full-width-container">
-              <label>Email</label>
+              <label>Token</label>
               <input
                 clrInput
                 type="text"
-                formControlName="email"
-                placeholder="Enter Email"
+                formControlName="token"
+                placeholder="Github Access Token"
               />
-              <clr-control-helper *ngIf="loginForm.controls['email'].pristine">Please, enter your email address</clr-control-helper>
-              <clr-control-error *clrIfError="'email'"
-                >Please, enter a valid email address</clr-control-error
+              <clr-control-helper *ngIf="loginForm.controls['token'].pristine"
+                >Please, enter your token here</clr-control-helper
+              >
+              <clr-control-error *clrIfError="'pattern'"
+                >Please, enter a valid token (min. 40 symbols etc.)</clr-control-error
               >
             </clr-input-container>
           </div>

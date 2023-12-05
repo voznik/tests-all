@@ -1,0 +1,90 @@
+{
+  "name": "ghv",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "org",
+  "sourceRoot": "apps/ghv/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/ghv",
+        "index": "apps/ghv/src/index.html",
+        "main": "apps/ghv/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/ghv/tsconfig.app.json",
+        "assets": [
+          "apps/ghv/src/favicon.ico",
+          "apps/ghv/src/assets",
+          "apps/ghv/src/manifest.webmanifest"
+        ],
+        "styles": [
+          "apps/ghv/src/styles.css",
+          "node_modules/@clr/icons/clr-icons.min.css",
+          "node_modules/@clr/ui/clr-ui.min.css"
+        ],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "ghv:build:production"
+        },
+        "development": {
+          "buildTarget": "ghv:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "ghv:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/ghv/**/*.ts", "apps/ghv/**/*.html"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/ghv/jest.config.ts"
+      }
+    }
+  }
+}

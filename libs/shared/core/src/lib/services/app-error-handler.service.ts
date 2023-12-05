@@ -1,8 +1,9 @@
 // tslint:disable:prefer-const quotemark
 import { ErrorHandler, Injectable, Injector } from '@angular/core';
 // import { UiModalService } from '../../../../ui/src/lib/services/ui-modal.service';
-import { ApiErrorResponse } from '../models';
+// import { ApiErrorResponse } from '../models';
 import { Logger } from './logger.service';
+import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 
 /** Application-wide error handler that adds a UI notification to the error handling
  * provided by the default Angular ErrorHandler.
@@ -18,19 +19,15 @@ export class AppErrorHandler extends ErrorHandler {
    *
    * Handling all errors, print logs, etc
    */
-  handleApiError(error: ApiErrorResponse) {
-    let innerHtml: any = '<p class="message">An error occurred.</p>';
-
-    // this._modalService = this.injector.get(UiModalService);
-
+  handleApiError(error: HttpErrorResponse) {
     // handle unauthorized
-    if (error.responseCode === '01') {
-      //
+    if (error.status === HttpStatusCode.Unauthorized) {
+      // TODO:
     }
     super.handleError(error);
   }
 
-  handleError(error: Error) {
+  override handleError(error: Error) {
     super.handleError(error);
   }
 }

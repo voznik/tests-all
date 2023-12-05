@@ -4,11 +4,11 @@ import { OverlayRef } from '@angular/cdk/overlay';
 export class AlertData {
   id?: string;
   icon?: string;
-  type: AlertType;
+  type?: AlertType;
   text?: string;
   actionText?: string;
-  template?: TemplateRef<any>;
-  templateContext?: {};
+  template?: TemplateRef<AnyObject>;
+  templateContext?: AnyObject;
 }
 
 export type AlertType = 'danger' | 'warning' | 'info' | 'success';

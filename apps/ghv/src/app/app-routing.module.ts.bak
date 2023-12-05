@@ -1,0 +1,61 @@
+import { NgModule, inject } from '@angular/core';
+import { Route, RouterModule, InitialNavigation } from '@angular/router';
+import { STORAGE, isLoggedInGuard } from '@ghv/auth';
+import { TOP_LEVEL_MENU } from '@ghv/ui';
+import { WelcomeComponent } from './welcome.component';
+
+export const ROUTES: Route[] = [
+  { path: 'welcome', component: WelcomeComponent },
+  {
+    path: 'payment',
+    loadChildren: () =>
+      import('./payment-wrapper.module').then((m) => m.PaymentWrapperModule),
+  },
+  {
+    path: 'planets',
+    loadChildren: () =>
+      import('./planets-wrapper.module').then((m) => m.PlanetsWrapperModule),
+    canLoad: [isLoggedInGuard(inject(STORAGE))],
+  },
+  {
+    path: '',
+    redirectTo: 'welcome',
+    pathMatch: 'full',
+  },
+];
+
+const REPOSITORIES_MENU = {
+  provide: TOP_LEVEL_MENU,
+  useValue: {
+    id: 'payment',
+    icon: 'credit-card',
+    label: 'Payments (2P2C)',
+    route: '/payment',
+  },
+  multi: true,
+};
+
+export const ISSUES_MENU = {
+  provide: TOP_LEVEL_MENU,
+  useValue: {
+    id: 'planets',
+    icon: 'network-globe',
+    label: 'Planets (TeamInternational)',
+    route: '/planets',
+  },
+  multi: true,
+};
+
+@NgModule({
+  imports: [
+    RouterModule.forRoot(ROUTES, {
+      enableTracing: true,
+      initialNavigation: 'disabled' as InitialNavigation,
+      onSameUrlNavigation: 'reload',
+      // preloadingStrategy: PreloadAllModules,
+    }),
+  ],
+  exports: [RouterModule],
+  providers: [REPOSITORIES_MENU, ISSUES_MENU],
+})
+export class AppRoutingModule {}

@@ -7,10 +7,10 @@
     <clr-alert
       [id]="alert.id"
       *ngFor="let alert of alerts"
-      [clrAlertType]="alert.type"
+      [clrAlertType]="alert.type!"
       [clrAlertAppLevel]="true"
-      [clrAlertIcon]="alert.icon"
-      (clrAlertClosedChange)="onAlertClosedChange(alert.id, $event)"
+      [clrAlertIcon]="alert.icon!"
+      (clrAlertClosedChange)="onAlertClosedChange(alert.id!, $event)"
     >
       <clr-alert-item>
         <span class="alert-text">
@@ -27,9 +27,9 @@
   <!--  -->
   <clr-header class="header-6">
     <div class="branding">
-      <a routerLink="/" class="logo-and-title">
+      <a routerLink="/" class="logo-and-title" title="Github Viewer">
         <clr-icon shape="vm-bug"></clr-icon>
-        <span class="title">TESTS</span>
+        <span class="title">GHV</span>
       </a>
     </div>
     <div class="divider"></div>
@@ -50,8 +50,8 @@
           clrDropdownTrigger
           aria-label="open user profile"
         >
-        <clr-icon shape="user"></clr-icon>
-          {{ user?.email }}
+          <clr-icon shape="user"></clr-icon>
+          {{ $any(user)?.email }}
           <clr-icon shape="caret down"></clr-icon>
         </button>
         <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
