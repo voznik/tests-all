@@ -2,7 +2,7 @@
   "name": "utils",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/shared/utils/src",
-  "prefix": "org",
+  "prefix": "ghv",
   "tags": [],
   "projectType": "library",
   "targets": {

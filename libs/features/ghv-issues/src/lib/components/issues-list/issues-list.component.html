@@ -1,0 +1,42 @@
+<clr-datagrid
+  [clrDgLoading]="loading!"
+  (clrDgRefresh)="gridRefresh($event)"
+  style="height: 640px"
+>
+  <clr-dg-detail-header>Top Repositories</clr-dg-detail-header>
+
+  <clr-dg-column>Issue #</clr-dg-column>
+  <!-- [style.width.%]="70" -->
+  <clr-dg-column>Title</clr-dg-column>
+  <clr-dg-column>Creation date</clr-dg-column>
+  <clr-dg-column>Comment count</clr-dg-column>
+
+  <clr-dg-row *ngFor="let item of issues">
+    <clr-dg-cell>{{ item?.number }}</clr-dg-cell>
+    <clr-dg-cell
+      ><a [href]="item.url" target="_blank"> {{ item?.title }}</a>
+      &nbsp;
+      <span class="inline" *ngFor="let label of item.labels">
+        <span class="badge" [style.background-color]="colorMap(label.color)">
+          {{ label.name }}
+        </span>
+      </span>
+    </clr-dg-cell>
+    <clr-dg-cell>{{ item?.createdAt | date }}</clr-dg-cell>
+    <clr-dg-cell> {{ item?.commentCount }}</clr-dg-cell>
+  </clr-dg-row>
+
+  <clr-dg-footer>
+    <clr-dg-pagination
+      #pagination
+      [clrDgTotalItems]="total"
+      [clrDgPageSize]="pageSize"
+    >
+      <clr-dg-page-size [clrPageSizeOptions]="[20, 50, 100]"
+        >Repos per page</clr-dg-page-size
+      >
+      {{ pagination.firstItem + 1 }} - {{ pagination.lastItem + 1 }} of
+      {{ pagination.totalItems }} users
+    </clr-dg-pagination>
+  </clr-dg-footer>
+</clr-datagrid>

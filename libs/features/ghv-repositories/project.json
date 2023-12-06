@@ -2,7 +2,7 @@
   "name": "ghv-repositories",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/features/ghv-repositories/src",
-  "prefix": "org",
+  "prefix": "ghv",
   "tags": [],
   "projectType": "library",
   "targets": {

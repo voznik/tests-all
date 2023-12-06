@@ -1,8 +1,9 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { UiModule } from '@ghv/ui';
-import { STORAGE, tokenStorageFactory, AUTH_REDIRECT } from './services';
 import { LoginComponent } from './components/login/login.component';
+import { AuthTokenInterceptor } from './services/token.interceptor';
 
 @NgModule({
   imports: [
@@ -15,13 +16,16 @@ import { LoginComponent } from './components/login/login.component';
 })
 export class AuthModule {
   static forRoot(
-    options: Record<string, unknown> = {}
+    options?: Record<string, unknown>
   ): ModuleWithProviders<AuthModule> {
     return {
       ngModule: AuthModule,
       providers: [
-        { provide: STORAGE, useFactory: tokenStorageFactory },
-        { provide: AUTH_REDIRECT, useValue: options.redirectLink || '/' },
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: AuthTokenInterceptor,
+          multi: true,
+        },
       ],
     };
   }

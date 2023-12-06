@@ -9,16 +9,15 @@ import {
 } from '@angular/core';
 import { BASE_URL } from './models';
 import {
-  // AppErrorHandler,
   HttpErrorInterceptor,
-  HttpService,
   Logger,
   LoggerLevel,
   LOGGER_LEVEL,
   AppErrorHandler,
+  RouteConfigService,
 } from './services';
 
-const CORE_PROVIDERS = [HttpService, Logger];
+const CORE_PROVIDERS = [Logger, RouteConfigService];
 
 @NgModule({
   imports: [CommonModule, HttpClientModule],

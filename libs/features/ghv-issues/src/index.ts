@@ -1,1 +1,1 @@
-export * from './lib/ghv-issues/ghv-issues.component';
+export * from './lib/issues.module';

@@ -1,5 +1,5 @@
 // start:ng42.barrel
 export * from './auth.service';
-export * from './simple.guard';
-export * from './storage.service';
+export * from './auth.guard';
+export * from './auth.strategy';
 // end:ng42.barrel

@@ -1,6 +1,12 @@
 import { Overlay } from '@angular/cdk/overlay';
 import { ComponentPortal, PortalInjector } from '@angular/cdk/portal';
-import { Inject, Injectable, Injector } from '@angular/core';
+import {
+  ApplicationRef,
+  Inject,
+  Injectable,
+  Injector,
+  createComponent,
+} from '@angular/core';
 import { generateUUID } from '@ghv/utils';
 import { BehaviorSubject } from 'rxjs';
 import { UiAlertComponent } from '../components/alert/alert.component';
@@ -10,6 +16,7 @@ import {
   AlertData,
   AlertRef,
 } from '../models';
+import { UiDialogComponent } from '../components';
 
 @Injectable({
   providedIn: 'root',
@@ -31,6 +38,7 @@ export class UiDialogService {
   constructor(
     private overlay: Overlay,
     private parentInjector: Injector,
+    private applicationRef: ApplicationRef,
     @Inject(ALERT_CONFIG_TOKEN) private alertConfig: AlertConfig
   ) {}
 
@@ -59,7 +67,22 @@ export class UiDialogService {
     this.alerts.next(this.alerts.getValue().filter((a) => a.id !== idx));
   }
 
-  showDialog() {}
+  showDialog(data: AlertData) {
+    const hostElement = document.getElementById('dialog-host')!;
+    const componentRef = createComponent(UiDialogComponent, {
+      hostElement,
+      environmentInjector: this.applicationRef.injector,
+    });
+    componentRef.instance.data = data;
+    componentRef.instance.openedChange.subscribe((opened) => {
+      if (!opened) {
+        componentRef.destroy();
+        this.applicationRef.detachView(componentRef.hostView);
+      }
+    });
+    this.applicationRef.attachView(componentRef.hostView);
+    componentRef.changeDetectorRef.detectChanges();
+  }
 
   private getInjector(
     data: AlertData,

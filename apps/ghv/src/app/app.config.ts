@@ -1,20 +1,27 @@
-import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
-import { appRoutes } from './app.routes';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { DOCUMENT } from '@angular/common';
+import { APP_INITIALIZER, ApplicationConfig, isDevMode } from '@angular/core';
+import {
+  RouterFeatures,
+  provideRouter,
+  withDebugTracing,
+  withDisabledInitialNavigation,
+} from '@angular/router';
 import { TOP_LEVEL_MENU } from '@ghv/ui';
+import { appRoutes } from './app.routes';
 
 const REPOSITORIES_MENU = {
   provide: TOP_LEVEL_MENU,
   useValue: {
     id: 'repositories',
-    icon: 'credit-card',
-    label: 'Repositories',
+    icon: 'star',
+    label: 'Top Repositories',
     route: '/repositories',
   },
   multi: true,
 };
 
-export const ISSUES_MENU = {
+const ISSUES_MENU = {
   provide: TOP_LEVEL_MENU,
   useValue: {
     id: 'issues',
@@ -25,6 +32,33 @@ export const ISSUES_MENU = {
   multi: true,
 };
 
+const handleDarkTheme = (document: Document) => {
+  return () => {
+    if (
+      (document.defaultView as Window).matchMedia(
+        '(prefers-color-scheme: dark)'
+      ).matches
+    ) {
+      document.body.setAttribute('cds-theme', 'dark');
+    }
+    return Promise.resolve();
+  };
+};
+
+const routerFeatures: RouterFeatures[] = [withDisabledInitialNavigation()];
+
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(appRoutes), REPOSITORIES_MENU, ISSUES_MENU],
+  providers: [
+    provideRouter(
+      appRoutes,
+      ...routerFeatures.concat(isDevMode() ? withDebugTracing() : [])
+    ),
+    REPOSITORIES_MENU,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: handleDarkTheme,
+      deps: [DOCUMENT],
+      multi: true,
+    },
+  ],
 };

@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-types, @typescript-eslint/no-unnecessary-type-constraint */
 
-import { ElementRef } from '@angular/core';
-
 /**
  * Determine if an item is a function
  *
@@ -13,7 +11,7 @@ import { ElementRef } from '@angular/core';
  * isFunction(() => {}); // Returns: true
  * isFunction('foo');    // Returns: false
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
 export const isFunction = (x: any): x is Function =>
   !!(x && x.constructor && x.call && x.apply);
 
@@ -27,7 +25,7 @@ export const isFunction = (x: any): x is Function =>
  * isUndefined(null)      // Returns: false
  * isUndefined('foo')     // Returns: false
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
 export const isUndefined = (input: any): input is undefined =>
   input === undefined;
 
@@ -40,7 +38,6 @@ export const isUndefined = (input: any): input is undefined =>
  * isObject({});    // Returns: true
  * isObject('foo'); // Returns: false
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/ban-types
 export const isObject = (x: any): x is object =>
   Object.prototype.toString.call(x) === '[object Object]';
 
@@ -53,11 +50,10 @@ export const isObject = (x: any): x is object =>
  * isString('foo'); // Returns: true
  * isString({});    // Returns: false
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
 export const isString = (x: any): x is string =>
   !!(typeof x === 'string' || x instanceof String);
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const isDate = (x: any): x is Date =>
   !!(
     typeof x.getMonth === 'function' ||
@@ -76,7 +72,7 @@ export const isDate = (x: any): x is Date =>
  *
  * @param value
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
 export function isPromiseLike(value: any): value is PromiseLike<unknown> {
   return typeof value?.then === 'function';
 }
@@ -90,12 +86,10 @@ export function isPromiseLike(value: any): value is PromiseLike<unknown> {
  * isBoolean(true);  // Returns: true
  * isBoolean('foo'); // Returns: false
  */
-export const isBoolean =
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (value: any): value is boolean =>
-    value === true ||
-    value === false ||
-    Object.prototype.toString.call(value) === '[object Boolean]';
+export const isBoolean = (value: any): value is boolean =>
+  value === true ||
+  value === false ||
+  Object.prototype.toString.call(value) === '[object Boolean]';
 
 /**
  * Determine if an item is null
@@ -106,7 +100,7 @@ export const isBoolean =
  * isNull(null) // Returns: true
  * isNull(1)    // Returns: false
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
 export const isNull = (x: any): x is null => x === null;
 
 /**
@@ -153,7 +147,7 @@ export function isNonNullable<T extends unknown>(
  *
  * @param value
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
 export function isEmpty(value: any): boolean {
   return (
     // null or undefined
@@ -193,19 +187,9 @@ export function isEmptyObject(obj: Record<string, unknown>): boolean {
  * @param value The given value
  * @returns Whether the given value is a number
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
 export function isNumber(value: any): value is number {
   return !isNaN(parseFloat(value)) && isFinite(value);
-}
-
-/**
- * Test if a given value is of type ElementRef.
- *
- * @param value The given value
- * @returns Whether the given value is a number
- */
-export function isElementRef(value: unknown): value is ElementRef {
-  return value instanceof ElementRef;
 }
 
 /**

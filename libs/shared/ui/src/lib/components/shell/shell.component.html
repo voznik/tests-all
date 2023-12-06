@@ -14,21 +14,25 @@
     >
       <clr-alert-item>
         <span class="alert-text">
-          {{ alert.text }}
+          {{ alert.message || alert.title }}
         </span>
-        <div class="alert-actions" *ngIf="alert.actionText">
-          <button class="btn alert-action">
-            {{ alert.actionText }}
-          </button>
+        <div class="alert-actions" *ngIf="alert.action">
+          <a
+            [href]="alert.action.link || 'javascript:void(0)'"
+            (click)="alert.action.handler?.() || noop()"
+            class="btn alert-action"
+          >
+            {{ alert.action.title }}
+          </a>
         </div>
       </clr-alert-item>
     </clr-alert>
   </clr-alerts>
   <!--  -->
-  <clr-header class="header-6">
+  <clr-header class="header-6" [hidden]="!privateMode">
     <div class="branding">
       <a routerLink="/" class="logo-and-title" title="Github Viewer">
-        <clr-icon shape="vm-bug"></clr-icon>
+        <cds-icon shape="github"></cds-icon>
         <span class="title">GHV</span>
       </a>
     </div>
@@ -39,31 +43,18 @@
         [id]="item.id"
         class="nav-link nav-icon-text"
         [routerLink]="[item.route]"
-        ><clr-icon [attr.shape]="item.icon"></clr-icon
+        ><cds-icon [attr.shape]="item.icon"></cds-icon
         ><span class="nav-text">{{ item.label }}</span></a
       >
     </div>
-    <div class="header-actions">
-      <clr-dropdown *ngIf="currentUser$ | async as user">
-        <button
-          class="nav-text"
-          clrDropdownTrigger
-          aria-label="open user profile"
-        >
-          <clr-icon shape="user"></clr-icon>
-          {{ $any(user)?.email }}
-          <clr-icon shape="caret down"></clr-icon>
-        </button>
-        <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-          <a href="javascript://" clrDropdownItem>Preferences</a>
-          <a (click)="logout()" clrDropdownItem>Log out</a>
-        </clr-dropdown-menu>
-      </clr-dropdown>
-    </div>
+
+    <ng-content select=".header-actions"></ng-content>
   </clr-header>
   <div class="content-container">
-    <main class="content-area">
+    <main class="content-area" [class.content-area-no-padding]="!privateMode">
       <router-outlet></router-outlet>
     </main>
+    <ng-content select=".nav-content"></ng-content>
   </div>
 </clr-main-container>
+<div id="dialog-host"></div>

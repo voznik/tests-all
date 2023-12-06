@@ -54,6 +54,7 @@ type Enum<E> = Record<keyof E, number | string> & {
  */
 type Falsy = false | '' | 0 | null | undefined;
 type Nil = null | undefined;
+type Nullable<T> = T | null | undefined;
 type MaybeUndefined<T> = undefined extends T ? undefined : never;
 type StringifiedKey<T> = Cast<keyof T, string>;
 interface Unsubscribable {
@@ -113,37 +114,6 @@ type TypedMessageEvent<T> = Partial<MessageEvent> & {
   data: T;
 };
 type ValueIteratee<T, O> = (value: T) => O;
-/**
- * @internal
- * Service mock type
- */
-type ServiceMock<T> = T & { [P in keyof T]: T[P] & jest.SpyInstance };
-
-/**
- * @internal
- * General entity model
- */
-type Entity = {
-  /**
-   * The Id of the entity
-   */
-  id: EntityId<any>;
-};
-/**
- * @internal
- *  Type that represents a related entity id
- */
-type EntityId<T extends Entity> = string;
-/**
- * @internal
- * Model that holds a map of data, referenced by their id
- */
-type EntityMap<T extends Entity> = Record<string, T>;
-/**
- * @internal
- * Model that holds a map of data, referenced by their id
- */
-type EntitiesMap<T extends Entity> = Record<string, Array<T>>;
 
 type ExcludePrefix<T, U extends string> = T extends `${U}${infer _K}`
   ? never

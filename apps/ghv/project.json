@@ -2,7 +2,7 @@
   "name": "ghv",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "org",
+  "prefix": "ghv",
   "sourceRoot": "apps/ghv/src",
   "tags": [],
   "targets": {
@@ -32,8 +32,8 @@
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumWarning": "2000kb",
+              "maximumError": "4mb"
             },
             {
               "type": "anyComponentStyle",

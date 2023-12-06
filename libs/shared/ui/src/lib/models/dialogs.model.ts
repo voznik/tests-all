@@ -5,8 +5,14 @@ export class AlertData {
   id?: string;
   icon?: string;
   type?: AlertType;
-  text?: string;
+  title?: string;
+  message?: string;
   actionText?: string;
+  action?: {
+    title: string;
+    link?: string;
+    handler?: AnyFn;
+  };
   template?: TemplateRef<AnyObject>;
   templateContext?: AnyObject;
 }

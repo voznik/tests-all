@@ -1,0 +1,5 @@
+.filters-container {
+  display: flex;
+  padding-top: 1rem;
+  justify-content: space-between;
+}

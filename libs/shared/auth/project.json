@@ -2,7 +2,7 @@
   "name": "auth",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/shared/auth/src",
-  "prefix": "org",
+  "prefix": "ghv",
   "tags": [],
   "projectType": "library",
   "targets": {

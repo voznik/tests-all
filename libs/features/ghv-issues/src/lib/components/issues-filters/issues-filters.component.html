@@ -1,0 +1,59 @@
+<div class="filters-container">
+  <div class="btn-group">
+    <button
+      data-testid="openIssuesButton"
+      class="btn"
+      [ngClass]="getOpenStyle()"
+      (click)="handleOpenIssueClick()"
+    >
+      <cds-icon
+        name="minus-circle"
+        type="outline"
+        class="typeIcon"
+        aria-hidden="true"
+      ></cds-icon>
+      {{ openCount }} Open
+    </button>
+    <button
+      data-testid="closedIssuesButton"
+      class="btn"
+      [ngClass]="getClosedStyle()"
+      (click)="handleCloseIssueClick()"
+    >
+      <cds-icon
+        name="check"
+        type="outline"
+        class="typeIcon"
+        aria-hidden="true"
+      ></cds-icon>
+      {{ closedCount }} Closed
+    </button>
+  </div>
+  <div class="btn-group">
+    <ghv-filter-dropdown
+      class="_btn"
+      name="Label"
+      description="Filter by label"
+      [current]="currentLabel"
+      [items]="labelOptions"
+      [toggle]="true"
+      (setFilter)="handleLabelClick($event)"
+    ></ghv-filter-dropdown>
+    <ghv-filter-dropdown
+      class="_btn"
+      name="Milestones"
+      description="Filter by milestone"
+      [current]="currentMilestone"
+      [items]="milestoneOptions"
+      (setFilter)="handleMilestoneClick($event)"
+    ></ghv-filter-dropdown>
+    <ghv-filter-dropdown
+      class="_btn"
+      name="Sort"
+      description="Sort by"
+      [current]="sort?.field + '^' + sort?.direction"
+      [items]="sortOptions"
+      (setFilter)="handleSortClick($event)"
+    ></ghv-filter-dropdown>
+  </div>
+</div>

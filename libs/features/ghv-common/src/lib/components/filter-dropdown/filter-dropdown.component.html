@@ -1,0 +1,11 @@
+<clr-dropdown>
+  <button class="btn btn-outline" clrDropdownTrigger>
+    {{ name }}
+    <cds-icon shape="angle" direction="down"></cds-icon>
+  </button>
+  <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
+    <ng-container *ngFor="let item of items">
+      <div clrDropdownItem>{{ item.label }}</div>
+    </ng-container>
+  </clr-dropdown-menu>
+</clr-dropdown>

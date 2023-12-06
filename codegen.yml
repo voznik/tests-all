@@ -1,0 +1,13 @@
+overwrite: true
+schema: 'github-schema-loader.js'
+documents:
+  - 'libs/features/ghv-data-access/src/**/*.gql'
+generates:
+  libs/features/ghv-data-access/src/lib/github.schema.ts:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-apollo-angular'
+    config:
+      addExplicitOverride: true
+      fetcher: graphql-request

@@ -1,0 +1,43 @@
+<section>
+  <h1>
+    <a data-testid="header owner name" [routerLink]="owner" class="ownerLink">{{
+      owner
+    }}</a>
+    <span class="separator">/</span>
+    <a data-testid="header repo name" routerLink="./" class="nameLink">{{
+      name
+    }}</a>
+  </h1>
+  <ul class="nav" role="tablist">
+    <li role="presentation" class="nav-item">
+      <button
+        id="code"
+        class="btn btn-link nav-link"
+        aria-selected="true"
+        type="button"
+      >
+        Code
+      </button>
+    </li>
+    <li role="presentation" class="nav-item">
+      <button
+        id="issues"
+        class="btn btn-link nav-link active"
+        aria-selected="true"
+        type="button"
+      >
+        Issues
+      </button>
+    </li>
+    <li role="presentation" class="nav-item">
+      <button
+        id="prs"
+        class="btn btn-link nav-link"
+        aria-selected="false"
+        type="button"
+      >
+        Pull Reqests
+      </button>
+    </li>
+  </ul>
+</section>

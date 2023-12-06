@@ -1,44 +1,52 @@
-<div class="clr-row">
-  <div class="clr-col-lg-5 clr-col-md-8 clr-col-12">
-    <div class="card">
-      <div class="card-header">Log In</div>
-      <div class="card-block">
-        <form
-          class="login-form"
-          clrForm
-          clrLayout="vertical"
-          [formGroup]="loginForm"
+<div class="login-wrapper">
+  <form class="login" [formGroup]="loginForm" (ngSubmit)="submit()">
+    <section class="title">
+      <!-- These could be heading elements. -->
+      <div class="welcome">GHV</div>
+      <div class="hint">Github Viewer</div>
+    </section>
+    <div class="login-group">
+      <clr-select-container>
+        <label>Authentication method</label>
+        <select clrSelect name="type" formControlName="type">
+          <option value="token" selected>Github Token</option>
+        </select>
+      </clr-select-container>
+      <clr-input-container class="full-width-container">
+        <label>Token</label>
+        <input
+          clrInput
+          type="text"
+          formControlName="token"
+          placeholder="Github Access Token"
+        />
+        <clr-control-helper *ngIf="loginForm.controls['token'].pristine"
+          >Please, enter your token here</clr-control-helper
         >
-          <div class="login-form-body">
-            <clr-input-container class="full-width-container">
-              <label>Token</label>
-              <input
-                clrInput
-                type="text"
-                formControlName="token"
-                placeholder="Github Access Token"
-              />
-              <clr-control-helper *ngIf="loginForm.controls['token'].pristine"
-                >Please, enter your token here</clr-control-helper
-              >
-              <clr-control-error *clrIfError="'pattern'"
-                >Please, enter a valid token (min. 40 symbols etc.)</clr-control-error
-              >
-            </clr-input-container>
-          </div>
+        <clr-control-error *clrIfError="'pattern'"
+          >Please, enter a valid token (min. 40 symbols etc.)</clr-control-error
+        >
+      </clr-input-container>
 
-          <div class="login-form-footer">
-            <button
-              class="btn btn-primary"
-              type="submit"
-              [disabled]="loginForm.invalid"
-              (click)="submit()"
-            >
-              Submit
-            </button>
-          </div>
-        </form>
-      </div>
+      <clr-alert [clrAlertType]="'danger'" *ngIf="error$ | async as error">
+        <clr-alert-item>
+          <span class="alert-text">{{ error }}</span>
+        </clr-alert-item>
+      </clr-alert>
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="loginForm.invalid"
+      >
+        Log in
+      </button>
+      <a
+        href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token"
+        target="_blank"
+        class="signup"
+        >Get API token</a
+      >
     </div>
-  </div>
+  </form>
 </div>

@@ -2,7 +2,7 @@
   "name": "ui",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/shared/ui/src",
-  "prefix": "org",
+  "prefix": "ghv",
   "tags": [],
   "projectType": "library",
   "targets": {

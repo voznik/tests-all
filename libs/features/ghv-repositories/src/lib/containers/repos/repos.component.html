@@ -1,0 +1,7 @@
+<ghv-repo-list
+  [loading]="loading"
+  [items]="query$ | ngrxPush"
+  [pageSize]="pageSize"
+  [total]="total"
+  (paginationStateChange)="paginationStateChange($any($event))"
+></ghv-repo-list>

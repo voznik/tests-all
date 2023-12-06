@@ -1,1 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
+/* INFO: fix for dark theme variable ( */
+:root,
+body {
+  --cds-global-typography-font-family: Metropolis, 'Avenir Next',
+    'Helvetica Neue', Arial, sans-serif;
+}

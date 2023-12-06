@@ -26,11 +26,17 @@
     "paths": {
       "@ghv/auth": ["libs/shared/auth/src/index.ts"],
       "@ghv/core": ["libs/shared/core/src/index.ts"],
-      "@ghv/ghv-data-access": ["libs/features/ghv-data-access/src/index.ts"],
-      "@ghv/ghv-issues": ["libs/features/ghv-issues/src/index.ts"],
-      "@ghv/ghv-repositories": ["libs/features/ghv-repositories/src/index.ts"],
       "@ghv/ui": ["libs/shared/ui/src/index.ts"],
-      "@ghv/utils": ["libs/shared/utils/src/index.ts"]
+      "@ghv/utils": ["libs/shared/utils/src/index.ts"],
+      "@ghv/viewer-common": ["libs/features/ghv-common/src/index.ts"],
+      "@ghv/viewer-data-access": ["libs/features/ghv-data-access/src/index.ts"],
+      "@ghv/viewer-models/*": [
+        "libs/features/ghv-data-access/src/lib/models/*"
+      ],
+      "@ghv/viewer-issues": ["libs/features/ghv-issues/src/index.ts"],
+      "@ghv/viewer-repositories": [
+        "libs/features/ghv-repositories/src/index.ts"
+      ]
     },
     "typeRoots": ["./node_modules/@types", "./libs/shared/utils/src/typings"]
   },

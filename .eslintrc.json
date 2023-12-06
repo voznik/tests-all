@@ -25,7 +25,9 @@
       "files": ["*.ts", "*.tsx"],
       "extends": ["plugin:@nx/typescript"],
       "rules": {
-        "no-prototype-builtins": 0
+        "no-prototype-builtins": 0,
+        "@typescript-eslint/no-explicit-any": 1,
+        "@typescript-eslint/no-unused-vars": 1
       }
     },
     {

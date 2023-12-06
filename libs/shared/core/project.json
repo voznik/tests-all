@@ -2,7 +2,7 @@
   "name": "core",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/shared/core/src",
-  "prefix": "org",
+  "prefix": "ghv",
   "tags": [],
   "projectType": "library",
   "targets": {

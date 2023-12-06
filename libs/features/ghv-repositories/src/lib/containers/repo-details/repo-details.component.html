@@ -1,0 +1,20 @@
+<ng-container>
+  <ng-container *ngIf="headerStats$ | async as stats; else repoHeaderSkeleton">
+    <ghv-repo-header
+      [owner]="stats.owner"
+      [name]="stats.name"
+      [login]="stats.login"
+      [isPrivate]="stats.isPrivate!"
+      [watchers]="stats.watchers!"
+      [stargazers]="stats.stargazers!"
+      [forks]="stats.forks!"
+      [issuesCount]="stats.openIssueCount!"
+      [pullsCount]="stats.openPullRequestCount!"
+    ></ghv-repo-header>
+  </ng-container>
+  <ng-template #repoHeaderSkeleton>
+    <span class="spinner">Loading...</span>
+  </ng-template>
+
+  <router-outlet></router-outlet>
+</ng-container>

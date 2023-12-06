@@ -1,0 +1,12 @@
+<ghv-issues-filters
+  [openCount]="openIssuesCount"
+  [closedCount]="closedIssuesCount"
+></ghv-issues-filters>
+
+<ghv-issues-list
+  [loading]="loading"
+  [total]="total"
+  [pageSize]="pageSize"
+  [issues]="query$ | ngrxPush"
+  (paginationStateChange)="paginationStateChange($any($event))"
+></ghv-issues-list>
