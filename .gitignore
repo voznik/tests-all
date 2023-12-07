@@ -1,0 +1,101 @@
+# Specifies intentionally untracked files to ignore when using Git
+# http://git-scm.com/docs/gitignore
+
+.env
+.env.local
+
+*~
+*.sw[mnpcod]
+tmp
+.tmp
+*.tmp
+*.tmp.*
+UserInterfaceState.xcuserstate
+$RECYCLE.BIN/
+
+*.log
+log.txt
+*.bak
+
+.netlify
+**/node_modules/*
+**/.firebase
+**/.firebaserc
+**/.runtimeconfig.json
+*/npm-debug.log
+lerna-debug.log
+*~
+service-account-credentials.json
+**/package-lock.json
+**/ui-debug.log
+**/database-debug.log
+**/firebase-debug.log
+**/pubsub-debug.log
+**/tsconfig-compile.json
+yarn.lock
+**/.DS_Store
+
+
+/.sourcemaps
+/.versions
+/coverage
+/keys
+
+# Ionic
+/.ionic
+/www
+/platforms
+/plugins
+/public
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Node
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+
+# Miscellaneous
+/.angular
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/.nx
+/.vite
+/.svelte-kit
+
+# System files
+.DS_Store
+Thumbs.db
+# Nx-Firebase
+**/.emulators/*
+**/.firebase/*
+firestore-debug.log
+firebase-export*
+.secret.local
